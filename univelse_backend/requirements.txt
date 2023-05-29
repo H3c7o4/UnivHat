@@ -1,0 +1,12 @@
+# pip install -r requirements.txt
+django
+djangorestframework
+Pillow
+pymysql
+django-filter
+dj-rest-auth
+cryptography
+drf-yasg
+django-cors-headers
+djangorestframework-simplejwt
+django-private-storage
