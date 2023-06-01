@@ -10,3 +10,5 @@ drf-yasg
 django-cors-headers
 djangorestframework-simplejwt
 django-private-storage
+social-auth-core
+social-auth-app-django

@@ -26,8 +26,6 @@ SECRET_KEY = 'django-insecure-^qqr6)3m!^-)11zv+!4%%bw7c9#oxo^!k6gccm6eo7nac+=fbd
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
@@ -57,9 +55,10 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'dj_rest_auth',
     'drf_yasg',
+    'accounts.apps.AccountsConfig',
+    'social_django',
     'private_storage',
     'courses',
-    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -71,6 +70,17 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication'
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
@@ -152,3 +162,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 PRIVATE_STORAGE_ROOT = './media/'
 PRIVATE_STORAGE_AUTH_FUNCTION = 'private_storage.permissions.allow_authenticated'
+SOCIAL_AUTH_JSONFIELD_ENABLED = True

@@ -10,7 +10,7 @@ class Course(models.Model):
     textfile = models.FileField(upload_to='public_files', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    students = models.ManyToManyField(CustomUser)
+    students = models.ManyToManyField(CustomUser, related_name='courses', blank=True)
 
     class Meta:
         verbose_name = 'Course'
@@ -40,8 +40,8 @@ class Evaluation(models.Model):
 
 class Classroom(models.Model):
     name = models.CharField(max_length=255)
-    courses = models.ManyToManyField(Course)
-    students = models.ManyToManyField(CustomUser)
+    courses = models.ManyToManyField(Course, blank=True, related_name='classes')
+    students = models.ManyToManyField(CustomUser, blank=True, related_name='classes')
 
     class Meta:
         verbose_name = 'Classroom'
